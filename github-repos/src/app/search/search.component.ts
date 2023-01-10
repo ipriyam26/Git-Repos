@@ -21,6 +21,23 @@ export class SearchComponent {
   constructor(private http: HttpClient) {}
 
   submit() {
+    if (!this.username) {
+      this.error = "Please enter a valid username";
+      return;
+  }
+
+  // check for valid input
+  let regExp = new RegExp(/^[a-zA-Z0-9]([a-zA-Z0-9]|[-])*$/);
+  if (!regExp.test(this.username)) {
+      this.error = "Please enter a valid username";
+      return;
+  }
+
+  // check for network connectivity
+  if (!navigator.onLine) {
+      this.error = "You are not connected to the internet";
+      return;
+  }
     this.getUser();
     this.getRepos();
   }
