@@ -62,6 +62,12 @@ class Repo(BaseModel):
     def description_default(cls, value):
         return value or ""
 
+#made an endpoint ping to keep on hitting from a cron to keep the server up and running
+@app.get("/ping")
+async def ping():
+    return {"ping": "pong"}
+
+
 @app.get("/users/{username}")
 async def read_user(username: str):
     url = f"https://api.github.com/users/{username}"
