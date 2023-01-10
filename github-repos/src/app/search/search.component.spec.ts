@@ -30,7 +30,9 @@ describe('SearchComponent', () => {
         component.username = 'username';
 
         // Call the onSubmit method
-        component.onSubmit();
+        new
+            // Call the onSubmit method
+            component.onSubmit();
 
         // Assert that a GET request was made to the correct URL
         const req = httpTestingController.expectOne('https://gitrepo2.onrender.com/users/username');

@@ -44,10 +44,11 @@ export class SearchComponent {
 
   getUser() {
     this.http
-      .get(`https://gitrepo2.onrender.com/users/${this.username}`)
+      .get<User>(`https://gitrepo2.onrender.com/users/${this.username}`)
       .subscribe(
-        (user: any) => {
+        (user: User) => {
           this.user = user;
+          console.log(this.user)
         },
         (error) => {
           this.error = error;
