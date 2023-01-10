@@ -2,7 +2,13 @@
 <!-- <h1 class="text-3xl font-bold underline">
   Hello world
 </h1> -->
-<app-search></app-search>
+<div *ngIf="showSearch">
+  <app-search (onSubmit)="onSearchSubmit($event)"></app-search>
+</div>
+<div *ngIf="!showSearch">
+  <app-user-details [user]="user" [repositories]="repositories"></app-user-details>
+</div>
+
 <router-outlet></router-outlet>
 
 </div>

@@ -1,0 +1,25 @@
+<div *ngIf="user">
+  <img [src]="user.avatar_url" class="avatar" />
+  <h1>{{ user.login }}</h1>
+  <p>{{ user.bio }}</p>
+  <p>{{ user.location }}</p>
+  <p>
+    <a
+      *ngIf="user.twitter_username"
+      href="https://twitter.com/{{ user.twitter_username }}"
+      >@{{ user.twitter_username }}</a
+    >
+  </p>
+  <p>
+    <a *ngIf="user.blog" href="{{ user.blog }}">{{ user.blog }}</a>
+  </p>
+  <div *ngIf="repositories">
+    <h2>Repositories</h2>
+    <ul>
+      <li *ngFor="let repo of repositories">
+        <a [href]="repo.html_url" target="_blank">{{ repo.name }}</a> -
+        {{ repo.language }}
+      </li>
+    </ul>
+  </div>
+</div>
