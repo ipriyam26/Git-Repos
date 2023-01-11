@@ -8,4 +8,5 @@ export interface Repository {
     open_issues_count: number;
     forks_count: number;
     watchers: number;
+    img_rng?: string;
 }
