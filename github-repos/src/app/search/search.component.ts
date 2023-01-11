@@ -19,10 +19,12 @@ export class SearchComponent {
   user: User = {} as User;
   repositories: Repository[] = [];
   error: string = '';
+  isLoading = false;
 
   constructor(private http: HttpClient) {}
 
   submit() {
+    this.isLoading = true;
     if (!this.username) {
       this.error = 'Please enter a valid username';
       return;
@@ -51,7 +53,13 @@ export class SearchComponent {
           );
         }),
         catchError((err) => {
-          this.error = 'User not found.';
+          if (err.status == 500) {
+            this.error =
+              'Server Error: Server seems to be down please wait while we look into this';
+          } else {
+            this.error = 'User not found.';
+          }
+          this.isLoading = false
           return of();
         })
       )
@@ -61,6 +69,8 @@ export class SearchComponent {
           user: this.user,
           repositories: this.repositories,
         });
+
+        this.isLoading = false;
       });
   }
 }

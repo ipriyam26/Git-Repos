@@ -1,5 +1,5 @@
 <div class="py-20 flex items-center justify-center h-screen px-2">
-  <div class="space-y-10">
+  <div class="space-y-10 ">
     <!-- top margin of 10 -->
     <div
       class="my-auto bg-slate-400/60 sm:py-20 py-10 rounded md:h-2/5 h-2/6 flex items-center justify-center"
@@ -30,6 +30,7 @@
         </form>
       </div>
     </div>
+    <app-loading  *ngIf="isLoading"></app-loading>
 
     <div
       class="bg-red-100 border-red-400 text-red-700 px-4 py-3 rounded-lg relative"
