@@ -68,10 +68,10 @@ export class UserDetailsComponent implements OnInit {
     this.user = {
       login: 'testUser',
       avatar_url: 'https://testurl.com',
-      bio: 'test bio',
+      bio: 'Lead developer on Wagtail CMS. Please do not email me directly with Wagtail support questions - see https://docs.wagtail.io/en/stable/support.html      ',
       location: 'test location',
       twitter_username: 'testhandle',
-      blog: 'https://testblog.com',
+      blog: 'endIndex',
       repos_url: 'https://testrepos.com',
     };
     this.repositories = [
