@@ -1,27 +1,49 @@
-# GithubRepos
+# Project Title
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.5.
+This project is a simple web application that allows users to search for Github repositories of a particular user.
+The site is hosted at https://ipriyam26.github.io/Git-Repos/ and the api at https://gitrepo2.onrender.com
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- User can search for Github repositories of a particular user
+- Displays the repositories in a grid layout
+- Displays the top 3 topics for each repository
+- Displays the number of stars, forks and open issues for each repository
+- Pagination support for repositories
+- Responsive design for all screen sizes
+- Twitter link for the user if available
+- Show a random abstract art for the repository
 
-## Code scaffolding
+## Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![Homepage](image_url)
+![Search Results](image_url)
 
-## Build
+## Built With
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Angular
+- Tailwind CSS
+- Github REST API
+- Unsplash API
 
-## Running unit tests
+## Requirements
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Node
+- Angular CLI
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Running the project locally
 
-## Further help
+1. Clone the repository by running `git clone https://github.com/ipriyam26/Git-Repos.git`
+2. Navigate to the project directory `cd Git-Repos`
+3. Install the dependencies by running `npm install`
+5. Run `ng serve` to start the development server
+6. Navigate to `http://localhost:4200/` in your browser
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Deployment
+
+The project is deployed on GitHub Pages. Here is how it is done:
+
+1. Run `ng build --prod`
+2. Run `npx ngh --dir=dist/git-repos`
+
