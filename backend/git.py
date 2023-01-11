@@ -4,6 +4,7 @@ from typing import List
 import json
 import requests
 from fastapi.middleware.cors import CORSMiddleware
+
 origins = ["*"]
 app = FastAPI()
 app.add_middleware(
@@ -14,6 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class User(BaseModel):
     login: str
     bio: str = None
@@ -22,7 +24,7 @@ class User(BaseModel):
     blog: str = None
     repos_url: str
     avatar_url: str
-    
+
     @validator("bio")
     def bio_default(cls, value):
         return value or ""
@@ -30,20 +32,21 @@ class User(BaseModel):
     @validator("location")
     def location_default(cls, value):
         return value or ""
-    
+
     @validator("twitter_username")
     def twitter_default(cls, value):
         return value or ""
-    
+
     @validator("blog")
     def blog_default(cls, value):
         return value or ""
+
 
 class Repo(BaseModel):
     name: str
     stargazers_count: int
     topics: List[str] = None
-    description: str=None
+    description: str = None
     html_url: str
     language: str = None
     open_issues_count: int
@@ -53,16 +56,17 @@ class Repo(BaseModel):
     @validator("language")
     def language_default(cls, value):
         return value or ""
-    
+
     @validator("topics")
     def topics_default(cls, value):
         return value or []
-    
+
     @validator("description")
     def description_default(cls, value):
         return value or ""
 
-#made an endpoint ping to keep on hitting from a cron to keep the server up and running
+
+# made an endpoint ping to keep on hitting from a cron to keep the server up and running
 @app.get("/ping")
 async def ping():
     return {"ping": "pong"}
@@ -71,7 +75,7 @@ async def ping():
 @app.get("/users/{username}")
 async def read_user(username: str):
     url = f"https://api.github.com/users/{username}"
-    
+
     response = requests.get(url)
     if response.status_code == 200:
         data = json.loads(response.text)
@@ -80,6 +84,7 @@ async def read_user(username: str):
         raise HTTPException(status_code=404, detail="User not found")
     else:
         raise HTTPException(status_code=500, detail="Server Error")
+
 
 @app.get("/users/{username}/repos")
 async def read_user_repos(username: str):

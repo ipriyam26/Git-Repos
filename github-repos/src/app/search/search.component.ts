@@ -5,7 +5,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Repository } from '../repository';
 import { User } from '../user';
 import { SearchEvent } from '../search_event';
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, switchMap, timeout } from 'rxjs/operators';
 import { of } from 'rxjs';
 @Component({
   selector: 'app-search',
@@ -27,6 +27,9 @@ export class SearchComponent {
     this.isLoading = true;
     if (!this.username) {
       this.error = 'Please enter a valid username';
+      setTimeout(() => {
+        this.error = '';
+      }, 5000);
       return;
     }
 
@@ -34,12 +37,18 @@ export class SearchComponent {
     let regExp = new RegExp(/^[a-zA-Z0-9]([a-zA-Z0-9]|[-])*$/);
     if (!regExp.test(this.username)) {
       this.error = 'Please enter a valid username';
+      setTimeout(() => {
+        this.error = '';
+      }, 5000);
       return;
     }
 
     // check for network connectivity
     if (!navigator.onLine) {
       this.error = 'You are not connected to the internet';
+      setTimeout(() => {
+        this.error = '';
+      }, 5000);
       return;
     }
     // this.error = null;
@@ -59,7 +68,11 @@ export class SearchComponent {
           } else {
             this.error = 'User not found.';
           }
-          this.isLoading = false
+          this.isLoading = false;
+          setTimeout(() => {
+            this.error = '';
+          }, 5000);
+
           return of();
         })
       )
