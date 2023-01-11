@@ -1,32 +1,56 @@
 <div class="py-20 flex items-center justify-center h-screen px-2">
-  <!-- top margin of 10 -->
-  <div
-    class="my-auto bg-slate-400/60 rounded md:h-2/5 h-2/6 flex items-center justify-center"
-  >
-    <div class="content-center">
-      <div
-        class="lg:text-5xl md:text-4xl text-3xl mx-auto px-32 drop-shadow-lg textbo font-bold text-white font-sans text-center mb-10"
-      >
-        Search Now
-      </div>
-
-      <form (ngSubmit)="(onSubmit)">
-        <div class="flex items-center justify-center">
-          <div
-            class="bg-slate-800 flex justify-center rounded-lg w-3/4 md:h-12 h-10 text-center items-center my-auto"
-          >
-            <fa-icon [icon]="faSearch" class="text-slate-300"></fa-icon>
-            <input
-              class="bg-inherit text-white text-center font-bold sm:px-20 px-15 w-3/4 md:h-12 h-10 outline-none"
-              [(ngModel)]="username"
-              type="text"
-              placeholder="Username"
-              name="username"
-            />
-          </div>
-          <button class="collapse" (click)="submit()"></button>
+  <div class="space-y-10">
+    <!-- top margin of 10 -->
+    <div
+      class="my-auto bg-slate-400/60 sm:py-20 py-10 rounded md:h-2/5 h-2/6 flex items-center justify-center"
+    >
+      <div class="content-center">
+        <div
+          class="lg:text-5xl md:text-4xl text-3xl mx-auto px-32 drop-shadow-lg textbo font-bold text-white font-sans text-center mb-10"
+        >
+          Search Now
         </div>
-      </form>
+
+        <form (ngSubmit)="(onSubmit)">
+          <div class="flex items-center justify-center">
+            <div
+              class="bg-slate-800 flex justify-center rounded-lg w-3/4 md:h-12 h-10 text-center items-center my-auto"
+            >
+              <fa-icon [icon]="faSearch" class="text-slate-300"></fa-icon>
+              <input
+                class="bg-inherit text-white text-center font-bold sm:px-20 px-15 w-3/4 md:h-12 h-10 outline-none"
+                [(ngModel)]="username"
+                type="text"
+                placeholder="Username"
+                name="username"
+              />
+            </div>
+            <button class="collapse" (click)="submit()"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      class="bg-red-100 border-red-400 text-red-700 px-4 py-3 rounded-lg relative"
+      role="alert"
+      *ngIf="error"
+    >
+      <strong class="font-bold">Error:</strong>
+      <span class="block sm:inline"> {{ error }}</span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+        <svg
+          class="fill-current h-6 w-6 text-red-500"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <!-- <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          /> -->
+        </svg>
+      </span>
     </div>
   </div>
 </div>
