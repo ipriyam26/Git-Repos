@@ -39,23 +39,32 @@
           </div>
         </div>
       </div>
-      <div class="flex space-x-5 justify-center items-center">
-        <p class=" text-white font-bold font-sans text-lg ">
+      <!-- <form>
+        <input
+          class="border rounded-lg py-2 px-3"
+          type="text"
+          placeholder="Search"
+          [(ngModel)]="searchTerm"
+          (input)="search()"
+        />
 
-          Sort By:   
-        </p>
-        <select 
-        class=" w-40 bg-slate-900 rounded-md border-gray-400 py-2 px-4 block appearance-none leading-5 text-white hover:text-violet-500 focus:outline-none focus:border-gray-500"
-        [(ngModel)]="sortBy" (ngModelChange)="sortRepos(sortBy)">
-        <option value="">None</option>
-        <option value="name">Name</option>
-        <option value="stargazers_count">Stars</option>
-        <option value="forks_count">Forks</option>
-        <option value="open_issues_count">Open Issues</option>
-        <option value="watchers">Watchers</option>
-      </select>
-    </div>
-      
+      </form> -->
+
+      <div class="flex space-x-5 justify-center items-center">
+        <p class="text-white font-bold font-sans text-lg">Sort By:</p>
+        <select
+          class="w-40 bg-slate-900 rounded-md border-gray-400 py-2 px-4 block appearance-none leading-5 text-white hover:text-violet-500 focus:outline-none focus:border-gray-500"
+          [(ngModel)]="sortBy"
+          (ngModelChange)="sortRepos(sortBy)"
+        >
+          <option value="">None</option>
+          <option value="name">Name</option>
+          <option value="stargazers_count">Stars</option>
+          <option value="forks_count">Forks</option>
+          <option value="open_issues_count">Open Issues</option>
+          <option value="watchers">Watchers</option>
+        </select>
+      </div>
 
       <div
         class="grid"
@@ -67,7 +76,7 @@
             <li
               class="flex space-x-5 w-96 h-40 bg-slate-900 rounded-lg hover:shadow-2xl px-2 cursor-pointer py-2 shadow-lg"
               (click)="openRepo(repo.html_url)"
-              *ngFor="let repo of getCurrentPageRepos() "
+              *ngFor="let repo of getCurrentPageRepos()"
             >
               >
               <div class="w-20 m-1">

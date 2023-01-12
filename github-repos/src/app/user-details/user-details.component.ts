@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { User } from '../user';
 import { Repository } from '../repository';
+import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -13,6 +14,7 @@ export class UserDetailsComponent implements OnInit {
   openRepo(link: string) {
     window.open(link, '_blank');
   }
+  // searchTerm:string = '';
   @Input() user: User = {} as User;
   @Input() repositories: Repository[] = [];
   currentPage = 1;
@@ -75,12 +77,12 @@ export class UserDetailsComponent implements OnInit {
         break;
       case 'stargazers_count':
         this.repositories = this.repositories.sort(
-          (a, b) => - a.stargazers_count + b.stargazers_count
+          (a, b) => -a.stargazers_count + b.stargazers_count
         );
         break;
       case 'forks_count':
         this.repositories = this.repositories.sort(
-          (a, b) => - a.forks_count + b.forks_count
+          (a, b) => -a.forks_count + b.forks_count
         );
         break;
       case 'watchers':
@@ -101,8 +103,27 @@ export class UserDetailsComponent implements OnInit {
     // );
     this.paginateRepos();
   }
+  // search() {
+  //   if(this.searchTerm && this.searchTerm.trim() !== ''){
 
-  constructor() {}
+  //     this.repositories = this.repositories.filter((repo) => {
+  //       return repo.name.includes(this.searchTerm);
+  //     });
+  //   }
+  //   console.log("Searching for ", this.searchTerm);
+  //   this.currentPage = 1;
+  //   this.paginateRepos();
+  // }
+
+  constructor() {
+  //   const searchInput = fromEvent(
+  //     document.getElementById('search-input'), 'keyup')
+  //   .pipe(
+  //      debounceTime(300),   // wait for 300ms after the last keyup event
+  //      distinctUntilChanged() // only emit if the value changes
+  //  );
+  //  searchInput.subscribe(() => this.search());
+  }
   testFunction() {
     this.user = {
       login: 'testUser',
