@@ -9,6 +9,7 @@ import { Repository } from '../repository';
   styleUrls: ['./user-details.component.css'],
 })
 export class UserDetailsComponent implements OnInit {
+  sortBy: string = '';
   openRepo(link: string) {
     window.open(link, '_blank');
   }
@@ -63,6 +64,44 @@ export class UserDetailsComponent implements OnInit {
     this.currentPage = pageNum;
     this.paginateRepos();
   }
+
+  sortRepos(sortBy: string) {
+    this.sortBy = sortBy; // set the selected sort criteria
+    switch (sortBy) {
+      case 'name':
+        this.repositories = this.repositories.sort((a, b) =>
+          a.name.localeCompare(b.name)
+        );
+        break;
+      case 'stargazers_count':
+        this.repositories = this.repositories.sort(
+          (a, b) => - a.stargazers_count + b.stargazers_count
+        );
+        break;
+      case 'forks_count':
+        this.repositories = this.repositories.sort(
+          (a, b) => - a.forks_count + b.forks_count
+        );
+        break;
+      case 'watchers':
+        this.repositories = this.repositories.sort(
+          (a, b) => -a.watchers + b.watchers
+        );
+        break;
+      case 'open_issues_count':
+        this.repositories = this.repositories.sort(
+          (a, b) => -a.open_issues_count + b.open_issues_count
+        );
+
+        break;
+    }
+    this.currentPage = 1; // reset current page to 1
+    // console.log(
+    //   this.repositories.map((r)=>r.stargazers_count)
+    // );
+    this.paginateRepos();
+  }
+
   constructor() {}
   testFunction() {
     this.user = {

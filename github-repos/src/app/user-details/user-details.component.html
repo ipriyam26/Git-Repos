@@ -1,24 +1,25 @@
 <div *ngIf="user" class="">
   <div class="bg-slate-800">
-    <div class="h-screen  space-y-20 py-16 flex flex-col md:py-32">
-      <div class="grid  place-items-center">
-        <div class="" >
-          <div class="md:flex  justify-center mx-auto items-center space-x-12">
-          
+    <div class="h-screen space-y-20 py-16 flex flex-col md:py-32">
+      <div class="grid place-items-center">
+        <div class="">
+          <div class="md:flex justify-center mx-auto items-center space-x-12">
             <img
               [src]="user.avatar_url"
               alt="im"
               height="50"
               width="200"
-              class="h-52 w-52 shadow-2xl  rounded-full"
+              class="h-52 w-52 shadow-2xl rounded-full"
             />
-            <div class=" md:mt-0 mt-10 space-y-2 w-64 font-sans">
+            <div class="md:mt-0 mt-10 space-y-2 w-64 font-sans">
               <p class="text-3xl font-bold text-white">{{ user.login }}</p>
-              <p class="text-xl font-medium md:block hidden  text-violet-500">{{ user.bio }}</p>
-              <p class="text-sm font-medium text-white">🔒 {{ user.location }}</p>
-              <div class="flex my-2 space-x-3" 
-                *ngIf="user.twitter_username"
-              >
+              <p class="text-xl font-medium md:block hidden text-violet-500">
+                {{ user.bio }}
+              </p>
+              <p class="text-sm font-medium text-white">
+                🔒 {{ user.location }}
+              </p>
+              <div class="flex my-2 space-x-3" *ngIf="user.twitter_username">
                 <div
                   class="flex h-5 w-5 align-middle border-spacing-8 items-center justify-center rounded-full bg-black text-center"
                 >
@@ -38,13 +39,35 @@
           </div>
         </div>
       </div>
-      <div class="grid" (keydown)="handleKeyboardEvent($event)" *ngIf="repositories">
+      <div class="flex space-x-5 justify-center items-center">
+        <p class=" text-white font-bold font-sans text-lg ">
+
+          Sort By:   
+        </p>
+        <select 
+        class=" w-40 bg-slate-900 rounded-md border-gray-400 py-2 px-4 block appearance-none leading-5 text-white hover:text-violet-500 focus:outline-none focus:border-gray-500"
+        [(ngModel)]="sortBy" (ngModelChange)="sortRepos(sortBy)">
+        <option value="">None</option>
+        <option value="name">Name</option>
+        <option value="stargazers_count">Stars</option>
+        <option value="forks_count">Forks</option>
+        <option value="open_issues_count">Open Issues</option>
+        <option value="watchers">Watchers</option>
+      </select>
+    </div>
+      
+
+      <div
+        class="grid"
+        (keydown)="handleKeyboardEvent($event)"
+        *ngIf="repositories"
+      >
         <div class="mx-auto flex items-start justify-start">
           <ul class="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8">
             <li
               class="flex space-x-5 w-96 h-40 bg-slate-900 rounded-lg hover:shadow-2xl px-2 cursor-pointer py-2 shadow-lg"
               (click)="openRepo(repo.html_url)"
-              *ngFor="let repo of getCurrentPageRepos()"
+              *ngFor="let repo of getCurrentPageRepos() "
             >
               >
               <div class="w-20 m-1">
@@ -129,10 +152,7 @@
             (click)="handlePageChange(pageNum)"
             *ngFor="let pageNum of pages"
           >
-            <a
-              class="text-white"
-              >{{ pageNum }}</a
-            >
+            <a class="text-white">{{ pageNum }}</a>
           </li>
         </ul>
 
